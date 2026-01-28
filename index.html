@@ -8,7 +8,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: 400vh;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: Arial, sans-serif;
       text-align: center;
@@ -18,9 +18,9 @@
     button {
       padding: 14px 26px;
       margin: 10px;
-      font-size: 18px;
+      font-size: 40px;
       border: none;
-      border-radius: 10px;
+      border-radius: 15px;
       cursor: pointer;
       transition: all 0.3s ease;
       z-index: 10;
@@ -92,15 +92,15 @@
       createFloatingHearts();
 
       // After final No, make No button run away
-      if (noCount >= 4) {
+      if (noCount >= 2) {
         noBtn.addEventListener("mouseover", moveNo);
       }
     }
 
     // Run-away effect
     function moveNo() {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 60);
+      const x = Math.random() * (window.innerWidth - 240);
+      const y = Math.random() * (window.innerHeight - 120);
       noBtn.style.position = "absolute";
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
@@ -113,7 +113,7 @@
         <h1>
           🎉 Ojas said YES 💕<br/><br/>
           <span style="font-size:22px; color:#ff1e56;">
-            You can’t say no to Sana 😌❤️
+            I know you love Sana 😌❤️
           </span>
         </h1>
       `;
@@ -127,8 +127,8 @@
         conf.innerHTML = "❤️";
         conf.style.position = "fixed";
         conf.style.left = Math.random() * 100 + "vw";
-        conf.style.top = "-20px";
-        conf.style.fontSize = (15 + Math.random() * 20) + "px";
+        conf.style.top = "-80px";
+        conf.style.fontSize = (40 + Math.random() * 40) + "px";
         conf.style.animation = "fall 3s linear";
         document.body.appendChild(conf);
         setTimeout(() => conf.remove(), 3000);
@@ -142,8 +142,8 @@
       heart.style.position = "fixed";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.top = Math.random() * 100 + "vh";
-      heart.style.fontSize = (10 + Math.random() * 20) + "px";
-      heart.style.opacity = 0.7;
+      heart.style.fontSize = (20 + Math.random() * 30) + "px";
+      heart.style.opacity = 0.9;
       heart.style.pointerEvents = "none";
       heart.style.animation = `float ${5 + Math.random()*5}s linear forwards`;
       document.body.appendChild(heart);
