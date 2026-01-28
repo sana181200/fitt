@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Muscle Tone 💪</title>
+  <title>Happy Birthday, do you want sana as your gf ?❤️</title>
   <style>
     body {
       display: flex;
@@ -49,7 +49,7 @@
 <body>
 
 <div>
-  <h1 id="question">Will you achieve your Muscle Tone goal? 💪</h1>
+  <h1 id="question">Do you want sana as your gf❤️? 💪</h1>
   <button class="yes" id="yesBtn" onclick="finalYes()">Yes 💥</button>
   <button class="no" id="noBtn">No 😅</button>
 </div>
@@ -66,8 +66,8 @@
 let noCount = 0;
 const messages = [
   "Are you sure? 😏",
-  "Last chance 😌",
-  "Last last chance 🥹"
+  "Last chance ?😌",
+  "Last last chance ??🥹"
 ];
 
 const heartbeat = document.getElementById("heartbeat");
@@ -101,7 +101,7 @@ function handleNo() {
   }
 
   // On final No, make NO run away and YES expand
-  if(noCount >= 4){
+  if(noCount >= 2){
     noBtn.addEventListener("mouseover", moveNo);
     yesBtn.style.transition = "all 0.5s ease";
     yesBtn.style.width = "90%";
@@ -126,9 +126,9 @@ function finalYes(){
   heartbeat.currentTime = 0;
   document.body.innerHTML = `
     <h1>
-      🎉 Muscle Tone goal achieved! 💕<br/><br/>
+      🎉 ojas said yes !! 💕<br/><br/>
       <span style="font-size:40px; color:#ff1e56;">
-        You can’t say no to progress! 😌❤️
+        we know you love sana! 😌❤️
       </span>
     </h1>
   `;
