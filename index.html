@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Valentine 💘</title>
+  <title>Muscle Tone 💪</title>
   <style>
     body {
       display: flex;
@@ -49,17 +49,17 @@
 <body>
 
 <div>
-  <h1 id="question">Will you be my Valentine, Ojas? 💖</h1>
-  <button class="yes" id="yesBtn" onclick="finalYes()">Yes 💕</button>
-  <button class="no" id="noBtn">No 🙈</button>
+  <h1 id="question">Will you achieve your Muscle Tone goal? 💪</h1>
+  <button class="yes" id="yesBtn" onclick="finalYes()">Yes 💥</button>
+  <button class="no" id="noBtn">No 😅</button>
 </div>
 
 <!-- Sounds -->
 <audio id="heartbeat" loop>
-  <source src="https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-fast-1184.mp3" type="audio/mpeg">
+  <source src="heartbeat.mp3" type="audio/mpeg">
 </audio>
 <audio id="brokenHeart">
-  <source src="https://assets.mixkit.co/sfx/preview/mixkit-broken-heart-quick-1265.mp3" type="audio/mpeg">
+  <source src="brokenHeart.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -126,9 +126,9 @@ function finalYes(){
   heartbeat.currentTime = 0;
   document.body.innerHTML = `
     <h1>
-      🎉 Ojas said YES 💕<br/><br/>
+      🎉 Muscle Tone goal achieved! 💕<br/><br/>
       <span style="font-size:40px; color:#ff1e56;">
-        You can’t say no to Sana 😌❤️
+        You can’t say no to progress! 😌❤️
       </span>
     </h1>
   `;
