@@ -157,7 +157,12 @@ document.body.addEventListener("click", () => {
   bgMusic.play().catch(()=>{});
 }, { once: true });
 
-noBtn.onclick = () => {
+else {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * 80 + "vw";
+  noBtn.style.top = Math.random() * 80 + "vh";
+}
+  
   noCount++;
 
   heartbeat.currentTime = 0;
@@ -172,24 +177,24 @@ noBtn.onclick = () => {
   if (noCount === 2) question.innerText = "Last chance 😌";
   if (noCount === 3) question.innerText = "Last last chance 🥹";
 
-  if (noCount >= 4) {
-    noBtn.style.display = "none";
+if (noCount >= 4) {
+  noBtn.style.display = "none";
 
-    question.innerText = "Okay okay… only YES left 😌❤️";
+  question.innerText = "Okay okay… only YES left 😌❤️";
 
-    yesBtn.style.display = "block";
-    yesBtn.style.margin = "30px auto 0";
-    yesBtn.style.transform = "scale(3)";
-    yesBtn.style.fontSize = "70px";
-    yesBtn.classList.add("glow");
-  } else {
-    // NO runs away 🏃
-    noBtn.style.position = "absolute";
-    noBtn.style.left = Math.random() * 80 + "vw";
-    noBtn.style.top = Math.random() * 80 + "vh";
-  }
-};
+  yesBtn.style.display = "block";
+  yesBtn.style.margin = "20px auto 0";
 
+  /* Responsive YES size */
+  yesBtn.style.width = "90vw";
+  yesBtn.style.maxWidth = "360px";
+  yesBtn.style.fontSize = "clamp(36px, 8vw, 56px)";
+  yesBtn.style.padding = "22px 0";
+  yesBtn.style.borderRadius = "20px";
+
+  yesBtn.classList.add("glow");
+}
+  
 yesBtn.onclick = () => {
   document.body.innerHTML = `
     <h1 style="font-size:60px;text-align:center;">
