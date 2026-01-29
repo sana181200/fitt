@@ -1,185 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Ojas 🎉❤️</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: Arial, sans-serif;
-      text-align: center;
-      overflow: hidden;
-      transition: background 1s;
-    }
+<meta charset="UTF-8">
+<title>Happy Birthday ojas 🎂❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    h1 {
-      color: #b3003c;
-      z-index: 10;
-      position: relative;
-      font-size: 50px;
-      transition: all 0.5s ease;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-    button {
-      padding: 20px 40px;
-      margin: 20px;
-      font-size: 28px;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-      position: relative;
-    }
+.container {
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+}
 
-    .yes {
-      background: #ff4d6d;
-      color: white;
-      animation: pulse 1s infinite alternate;
-    }
+img {
+  width: 220px;
+  animation: float 2s ease-in-out infinite;
+}
 
-    .no {
-      background: #fff;
-      position: relative;
-      transition: all 0.3s ease;
-    }
+h1 {
+  font-size: 42px;
+  color: #b3003c;
+  margin: 15px 0;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-  </style>
+button {
+  padding: 18px 36px;
+  font-size: 26px;
+  border: none;
+  border-radius: 14px;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.yes {
+  background: #ff4d6d;
+  color: white;
+  animation: pulse 1s infinite;
+}
+
+.no {
+  background: white;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* Candle */
+.candle {
+  width: 30px;
+  height: 60px;
+  background: #fff;
+  margin: 10px auto;
+  position: relative;
+}
+.flame {
+  width: 15px;
+  height: 15px;
+  background: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  left: 7px;
+  animation: flicker 0.3s infinite alternate;
+}
+@keyframes flicker {
+  from { transform: scale(1); }
+  to { transform: scale(1.3); }
+}
+</style>
 </head>
+
 <body>
 
-<div>
-  <h1 id="question"> Happy Birthday.Do you want Sana as your GF ❤️?</h1>
+<div class="container">
+  <img src="minion-heart.jpg" alt="Minion Heart">
+
+  <div class="candle">
+    <div class="flame"></div>
+  </div>
+
+  <h1 id="question">Happy Birthday Ojas .Do you want Sana as your GF ❤️?</h1>
+
   <button class="yes" id="yesBtn" onclick="finalYes()">Yes 💕</button>
-  <button class="no" id="noBtn">No 🙈</button>
+  <button class="no" id="noBtn">No 😑</button>
 </div>
 
 <!-- Sounds -->
-<audio id="heartbeat" loop>
-  <source src="heartbeat.mp3" type="audio/mpeg">
-</audio>
-<audio id="brokenHeart">
-  <source src="brokenHeart.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" src="romantic.mp3" loop></audio>
+<audio id="heartbeat" src="heartbeat.mp3" loop></audio>
+<audio id="broken" src="brokenHeart.mp3"></audio>
 
 <script>
 let noCount = 0;
-const messages = [
-  "say yessss 😏",
-  "Last chance to say yess😌",
-  "Last last chance 🥹"
-];
-
-const heartbeat = document.getElementById("heartbeat");
-const brokenHeart = document.getElementById("brokenHeart");
-const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 const question = document.getElementById("question");
 
-// NO click
-noBtn.addEventListener("click", handleNo);
+const bgMusic = document.getElementById("bgMusic");
+const heartbeat = document.getElementById("heartbeat");
+const broken = document.getElementById("broken");
 
-function handleNo() {
+document.body.addEventListener("click", () => {
+  bgMusic.play().catch(()=>{});
+}, { once: true });
+
+noBtn.onclick = () => {
   noCount++;
+  heartbeat.play();
+  broken.currentTime = 0;
+  broken.play();
 
-  // Play heartbeat and broken heart
-  if(noCount === 1) heartbeat.play();
-  brokenHeart.currentTime = 0;
-  brokenHeart.play();
+  yesBtn.style.transform = `scale(${1 + noCount * 0.35})`;
 
-  // Grow YES button every click
-  yesBtn.style.transform = `scale(${1 + noCount * 0.3})`;
+  if (noCount === 1) question.innerText = "Are you sure you don't want ? 😏";
+  if (noCount === 2) question.innerText = "Last chance 😌";
+  if (noCount === 3) question.innerText = "Last last chance 🥹";
 
-  // Show escalating messages
-  if(noCount <= 3){
-    question.innerText = messages[noCount - 1];
-    createFloatingHearts();
-  }
-
-  // Final stage: YES covers screen, NO disappears
-  if(noCount >= 4){
+  if (noCount >= 4) {
     noBtn.style.display = "none";
-
-    yesBtn.style.transition = "all 1s ease";
     yesBtn.style.position = "fixed";
     yesBtn.style.top = "50%";
     yesBtn.style.left = "50%";
-    yesBtn.style.transform = "translate(-50%, -50%) scale(5)";
+    yesBtn.style.transform = "translate(-50%, -50%) scale(6)";
     yesBtn.style.width = "90vw";
     yesBtn.style.height = "90vh";
-    yesBtn.style.fontSize = "150px";
-    yesBtn.style.borderRadius = "30px";
-    yesBtn.style.zIndex = 100;
-
-    document.body.style.background = "linear-gradient(135deg, #ff1e56, #ff9a9e)";
-    createFloatingHearts();
+    yesBtn.style.fontSize = "120px";
   }
-}
+};
 
-// Final YES
-function finalYes(){
-  heartbeat.pause();
-  heartbeat.currentTime = 0;
+// Floating hearts generator
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 400);
+
+function finalYes() {
   document.body.innerHTML = `
-    <h1>
-      🎉 Ojas said YES! 💕<br/><br/>
-      <span style="font-size:40px; color:#ff1e56;">
-        hmm hmm lucky uncle , sana is yours now.😌❤️
-      </span>
+    <h1 style="font-size:60px;text-align:center;">
+      🎉 Ojas said YES! 💕<br><br>
+      hmm hmm ofc you love sana . what took you so long to accept . huh.😌❤️
     </h1>
   `;
-  confetti();
-}
-
-// Confetti hearts
-function confetti(){
-  for(let i=0;i<150;i++){
-    const conf = document.createElement("div");
-    conf.innerHTML = "❤️";
-    conf.style.position = "fixed";
-    conf.style.left = Math.random()*100+"vw";
-    conf.style.top = "-20px";
-    conf.style.fontSize = (15+Math.random()*25)+"px";
-    conf.style.animation = "fall 3s linear";
-    conf.style.zIndex = 200;
-    document.body.appendChild(conf);
-    setTimeout(()=>conf.remove(),3000);
-  }
-}
-
-// Floating hearts
-function createFloatingHearts(){
-  const heart = document.createElement("div");
-  heart.innerHTML = "💖";
-  heart.style.position = "fixed";
-  heart.style.left = Math.random()*100+"vw";
-  heart.style.top = Math.random()*100+"vh";
-  heart.style.fontSize = (10+Math.random()*20)+"px";
-  heart.style.opacity = 0.7;
-  heart.style.pointerEvents = "none";
-  heart.style.animation = `float ${5+Math.random()*5}s linear forwards`;
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),7000);
 }
 </script>
-
-<style>
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-}
-@keyframes float {
-  to { transform: translateY(-50px) translateX(20px); opacity: 0; }
-}
-</style>
 
 </body>
 </html>
