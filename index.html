@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday ojas 🎂❤️</title>
+<title>Happy Birthday Ojas 🎂❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,7 +10,7 @@ body {
   margin: 0;
   height: 100vh;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,8 +19,8 @@ body {
 
 .container {
   text-align: center;
-  z-index: 10;
   padding: 20px;
+  z-index: 5;
 }
 
 img {
@@ -103,6 +103,20 @@ button {
   from { transform: scale(1); }
   to { transform: scale(1.3); }
 }
+
+/* GLOW EFFECT ✨ */
+.glow {
+  animation: glowPulse 1.2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
+  }
+  to {
+    box-shadow: 0 0 40px #ff7a90, 0 0 80px #ff7a90;
+  }
+}
 </style>
 </head>
 
@@ -115,15 +129,18 @@ button {
     <div class="flame"></div>
   </div>
 
-  <h1 id="question">Happy Birthday Ojas .Do you want Sana as your GF ❤️?</h1>
+  <h1 id="question">
+    Happy Birthday Ojas 🎂<br>
+    Do you want Sana as your GF ❤️?
+  </h1>
 
-  <button class="yes" id="yesBtn" onclick="finalYes()">Yes 💕</button>
+  <button class="yes" id="yesBtn">Yes 💕</button>
   <button class="no" id="noBtn">No 😑</button>
 </div>
 
 <!-- Sounds -->
 <audio id="bgMusic" src="romantic.mp3" loop></audio>
-<audio id="heartbeat" src="heartbeat.mp3" loop></audio>
+<audio id="heartbeat" src="heartbeat.mp3"></audio>
 <audio id="broken" src="brokenHeart.mp3"></audio>
 
 <script>
@@ -142,49 +159,48 @@ document.body.addEventListener("click", () => {
 
 noBtn.onclick = () => {
   noCount++;
+
+  heartbeat.currentTime = 0;
   heartbeat.play();
+
   broken.currentTime = 0;
   broken.play();
 
   yesBtn.style.transform = `scale(${1 + noCount * 0.35})`;
 
-  if (noCount === 1) question.innerText = "Are you sure you don't want ? 😏";
+  if (noCount === 1) question.innerText = "Are you sure? 😏";
   if (noCount === 2) question.innerText = "Last chance 😌";
   if (noCount === 3) question.innerText = "Last last chance 🥹";
 
-/* Glow animation for final YES */
-.glow {
-  animation: glowPulse 1.2s infinite alternate;
-  box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
-}
+  if (noCount >= 4) {
+    noBtn.style.display = "none";
 
-@keyframes glowPulse {
-  from {
-    box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
+    question.innerText = "Okay okay… only YES left 😌❤️";
+
+    yesBtn.style.display = "block";
+    yesBtn.style.margin = "30px auto 0";
+    yesBtn.style.transform = "scale(3)";
+    yesBtn.style.fontSize = "70px";
+    yesBtn.classList.add("glow");
+  } else {
+    // NO runs away 🏃
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * 80 + "vw";
+    noBtn.style.top = Math.random() * 80 + "vh";
   }
-  to {
-    box-shadow: 0 0 35px #ff7a90, 0 0 70px #ff7a90;
-  }
-}
-  
-if (noCount >= 4) {
-  noBtn.style.display = "none";
+};
 
-  question.innerText = "Okay okay… only YES left 😌❤️";
+yesBtn.onclick = () => {
+  document.body.innerHTML = `
+    <h1 style="font-size:60px;text-align:center;">
+      🎉 Ojas said YES! 💕<br><br>
+      Of course you love Sana 😌❤️<br>
+      what took you so long to accept.huh😏
+    </h1>
+  `;
+};
 
-  yesBtn.style.position = "relative";
-  yesBtn.style.display = "block";
-  yesBtn.style.margin = "30px auto 0";
-  yesBtn.style.transform = "scale(3)";
-  yesBtn.style.fontSize = "70px";
-  yesBtn.style.padding = "30px 60px";
-  yesBtn.style.borderRadius = "25px";
-
-  // ADD GLOW ✨
-  yesBtn.classList.add("glow");
-}
-
-// Floating hearts generator
+// Floating hearts generator ❤️
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -193,15 +209,6 @@ setInterval(() => {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 6000);
 }, 400);
-
-function finalYes() {
-  document.body.innerHTML = `
-    <h1 style="font-size:60px;text-align:center;">
-      🎉 Ojas said YES! 💕<br><br>
-      hmm hmm ofc you love sana . what took you so long to accept . huh.😌❤️
-    </h1>
-  `;
-}
 </script>
 
 </body>
