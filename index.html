@@ -152,17 +152,37 @@ noBtn.onclick = () => {
   if (noCount === 2) question.innerText = "Last chance 😌";
   if (noCount === 3) question.innerText = "Last last chance 🥹";
 
-  if (noCount >= 4) {
-    noBtn.style.display = "none";
-    yesBtn.style.position = "fixed";
-    yesBtn.style.top = "50%";
-    yesBtn.style.left = "50%";
-    yesBtn.style.transform = "translate(-50%, -50%) scale(6)";
-    yesBtn.style.width = "90vw";
-    yesBtn.style.height = "90vh";
-    yesBtn.style.fontSize = "120px";
+/* Glow animation for final YES */
+.glow {
+  animation: glowPulse 1.2s infinite alternate;
+  box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
+}
+
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff4d6d;
   }
-};
+  to {
+    box-shadow: 0 0 35px #ff7a90, 0 0 70px #ff7a90;
+  }
+}
+  
+if (noCount >= 4) {
+  noBtn.style.display = "none";
+
+  question.innerText = "Okay okay… only YES left 😌❤️";
+
+  yesBtn.style.position = "relative";
+  yesBtn.style.display = "block";
+  yesBtn.style.margin = "30px auto 0";
+  yesBtn.style.transform = "scale(3)";
+  yesBtn.style.fontSize = "70px";
+  yesBtn.style.padding = "30px 60px";
+  yesBtn.style.borderRadius = "25px";
+
+  // ADD GLOW ✨
+  yesBtn.classList.add("glow");
+}
 
 // Floating hearts generator
 setInterval(() => {
