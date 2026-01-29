@@ -145,6 +145,7 @@ button {
 
 <script>
 let noCount = 0;
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const question = document.getElementById("question");
@@ -153,23 +154,21 @@ const bgMusic = document.getElementById("bgMusic");
 const heartbeat = document.getElementById("heartbeat");
 const broken = document.getElementById("broken");
 
+/* Enable background music on first tap */
 document.body.addEventListener("click", () => {
+  bgMusic.volume = 0.5;
   bgMusic.play().catch(()=>{});
 }, { once: true });
 
-else {
-  noBtn.style.position = "absolute";
-  noBtn.style.left = Math.random() * 80 + "vw";
-  noBtn.style.top = Math.random() * 80 + "vh";
-}
-  
+/* NO button logic */
+noBtn.onclick = () => {
   noCount++;
 
   heartbeat.currentTime = 0;
-  heartbeat.play();
+  heartbeat.play().catch(()=>{});
 
   broken.currentTime = 0;
-  broken.play();
+  broken.play().catch(()=>{});
 
   yesBtn.style.transform = `scale(${1 + noCount * 0.35})`;
 
@@ -177,35 +176,35 @@ else {
   if (noCount === 2) question.innerText = "Last chance 😌";
   if (noCount === 3) question.innerText = "Last last chance 🥹";
 
-if (noCount >= 4) {
-  noBtn.style.display = "none";
+  if (noCount >= 4) {
+    noBtn.style.display = "none";
 
-  question.innerText = "Okay okay… only YES left 😌❤️";
+    question.innerText = "Okay okay… only YES left 😌❤️";
 
-  yesBtn.style.display = "block";
-  yesBtn.style.margin = "20px auto 0";
+    yesBtn.style.display = "block";
+    yesBtn.style.margin = "20px auto 0";
+    yesBtn.style.width = "90vw";
+    yesBtn.style.maxWidth = "360px";
+    yesBtn.style.fontSize = "clamp(36px, 8vw, 56px)";
+    yesBtn.style.padding = "22px 0";
+    yesBtn.style.borderRadius = "20px";
 
-  /* Responsive YES size */
-  yesBtn.style.width = "90vw";
-  yesBtn.style.maxWidth = "360px";
-  yesBtn.style.fontSize = "clamp(36px, 8vw, 56px)";
-  yesBtn.style.padding = "22px 0";
-  yesBtn.style.borderRadius = "20px";
+    yesBtn.classList.add("glow");
+  }
+};
 
-  yesBtn.classList.add("glow");
-}
-  
+/* YES button */
 yesBtn.onclick = () => {
   document.body.innerHTML = `
     <h1 style="font-size:60px;text-align:center;">
       🎉 Ojas said YES! 💕<br><br>
       Of course you love Sana 😌❤️<br>
-      what took you so long to accept.huh😏
+      what took you so long to accept, huh 😏
     </h1>
   `;
 };
 
-// Floating hearts generator ❤️
+/* Floating hearts ❤️ */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -215,6 +214,7 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 6000);
 }, 400);
 </script>
+
 
 </body>
 </html>
